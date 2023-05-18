@@ -14,6 +14,10 @@ npm -v
 node -v
 ```
 
+```ps
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 4. Następnie utwórz nowy folder, który będzie Twoim folderem projektowym. Możesz użyć powershell'a lub stworzyć folder manualnie.
 
 ```ps
