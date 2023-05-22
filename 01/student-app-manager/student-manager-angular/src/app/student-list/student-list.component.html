@@ -1,0 +1,24 @@
+<h4>Lista studentów</h4>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Lp</th>
+            <th>Imię i nazwisko</th>
+            <th>Adres email</th>
+            <th>Operacje</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students">
+            <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email}}</td>
+            <td>
+                <button class="btn btn-outline-warning">Edytuj</button>
+                <button class="btn btn-outline-danger">Usuń</button>
+                <button class="btn btn-outline-info">Szczegóły</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
