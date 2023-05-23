@@ -1,0 +1,22 @@
+<h4>Dodaj studenta</h4>
+
+<div *ngIf="isStudentAdded" class="alert alert-success" role="alert">
+  <h4 class="alert-heading">Sukces!</h4>
+  <p>Dodano studenta : {{ studentAddedText }}</p>
+</div>
+
+<div>
+  <div class="mb-3">
+    <label class="form-label">Imię i nazwisko:</label>
+    <input class="form-control" placeholder="Wprowadź imię i nazwisko" type="text" #name>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input class="form-control" placeholder="Wprowadź email" type="email" #email>
+  </div>
+
+  <button (click)="save(name.value, email.value)" type="button" class="btn btn-success">Zapisz</button>
+</div>
+
+<p id="validation_error" *ngIf="isValidationRequiredFailed">Jedno z pól nie zostało wypełnione!</p>

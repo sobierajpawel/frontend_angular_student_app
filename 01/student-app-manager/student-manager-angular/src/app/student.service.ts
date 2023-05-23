@@ -6,11 +6,21 @@ import { Student } from './models/student';
   providedIn: 'root'
 })
 export class StudentService {
+  private studentApiUrl = "https://jsonplaceholder.typicode.com/users";
 
   constructor(private httpClient : HttpClient) { }
 
   getStudents(){
     // musimy pobrać listę studentów z zewnętrznego serwera/API
-    return this.httpClient.get<Student[]>("https://jsonplaceholder.typicode.com/users");
+    return this.httpClient.get<Student[]>(this.studentApiUrl);
+  }
+
+  deleteStudent(id : number){
+    let url = `${this.studentApiUrl}/${id}`;
+    return this.httpClient.delete<Student>(url);
+  }
+
+  addStudent(student: Student){
+    return this.httpClient.post<Student>(this.studentApiUrl, student);
   }
 }
