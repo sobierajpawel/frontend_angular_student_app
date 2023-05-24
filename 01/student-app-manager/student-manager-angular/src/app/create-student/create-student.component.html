@@ -5,18 +5,22 @@
   <p>Dodano studenta : {{ studentAddedText }}</p>
 </div>
 
-<div>
+<form (submit)="save(name.value, email.value)">
   <div class="mb-3">
     <label class="form-label">Imię i nazwisko:</label>
-    <input class="form-control" placeholder="Wprowadź imię i nazwisko" type="text" #name>
+    <input required class="form-control" placeholder="Wprowadź imię i nazwisko" type="text" #name>
   </div>
 
   <div class="mb-3">
     <label class="form-label">Email</label>
-    <input class="form-control" placeholder="Wprowadź email" type="email" #email>
+    <input required class="form-control" placeholder="Wprowadź email" type="email" #email>
   </div>
 
-  <button (click)="save(name.value, email.value)" type="button" class="btn btn-success">Zapisz</button>
-</div>
+  <button [disabled]="isSubmitting" type="submit" class="btn btn-success">
+    <span *ngIf="isSubmitting" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Zapisz
+  </button>
+
+</form>
 
 <p id="validation_error" *ngIf="isValidationRequiredFailed">Jedno z pól nie zostało wypełnione!</p>

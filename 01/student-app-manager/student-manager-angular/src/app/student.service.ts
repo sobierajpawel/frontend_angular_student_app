@@ -15,6 +15,11 @@ export class StudentService {
     return this.httpClient.get<Student[]>(this.studentApiUrl);
   }
 
+  getStudent(id :number){
+    let url = `${this.studentApiUrl}/${id}`;
+    return this.httpClient.get<Student>(url);
+  }
+
   deleteStudent(id : number){
     let url = `${this.studentApiUrl}/${id}`;
     return this.httpClient.delete<Student>(url);

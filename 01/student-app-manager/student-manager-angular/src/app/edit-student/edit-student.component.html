@@ -1,0 +1,17 @@
+<!-- NAgłowek - Edytuj studenta imie nazwisko -->
+<h4 *ngIf="student">Edytuj studenta {{ student.name}}</h4>
+
+<!-- Formularz do edycji -->
+<form *ngIf="student">
+  <div class="mb-3">
+    <label class="form-label">Imię i nazwisko</label>
+    <input [(ngModel)]="student.name" name="studentname" class="form-control" required type="text">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input [(ngModel)]="student.email" name="studentemail" type="email" required class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-secondary">Zapisz</button>
+</form>

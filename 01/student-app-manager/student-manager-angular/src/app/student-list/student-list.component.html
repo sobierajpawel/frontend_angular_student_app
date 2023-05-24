@@ -1,12 +1,12 @@
 <h4>Lista studentów</h4>
 
 <div *ngIf="isStudentRemoved" class="alert alert-danger" role="alert">
-    Usunięto studenta: {{ removedStudentName }}
+  Usunięto studenta: {{ removedStudentName }}
 </div>
 
 <table class="table table-hover">
   <thead>
-    <tr>
+    <tr style="text-align:center">
       <th>Lp</th>
       <th>Imię i nazwisko</th>
       <th>Adres email</th>
@@ -14,15 +14,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students" [ngClass]="{'table-success': student.id == 9, 'table-danger':student.id < 3}">
+    <tr *ngFor="let student of students" style="text-align: center;"
+      [ngClass]="{'table-success': student.id == 9, 'table-danger':student.id < 3}">
       <td>{{ student.id }}</td>
-      <td>{{ student.name | uppercase }}</td>
+      <td>{{ student.name | remove_title }}</td>
       <td>
         <a *ngIf="student.id > 4">{{ student.email | lowercase}}</a>
-     </td>
+      </td>
       <td>
-        <button class="btn btn-outline-warning">Edytuj</button>
-        <button (click)="delete(student)" class="btn btn-outline-danger">Usuń</button>
+        <a [routerLink]="'/edit-student/'+student.id" class="btn btn-outline-warning button-margin">Edytuj</a>
+        <button (click)="delete(student)" class="btn btn-outline-danger button-margin">Usuń</button>
         <button class="btn btn-outline-info">Szczegóły</button>
       </td>
     </tr>
