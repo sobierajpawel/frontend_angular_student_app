@@ -28,4 +28,9 @@ export class StudentService {
   addStudent(student: Student){
     return this.httpClient.post<Student>(this.studentApiUrl, student);
   }
+
+  updateStudent(student: Student){
+    let url = `${this.studentApiUrl}/${student.id}`;
+    return this.httpClient.put<Student>(url, student);
+  }
 }

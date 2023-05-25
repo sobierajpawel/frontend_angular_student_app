@@ -1,8 +1,18 @@
 <!-- NAgłowek - Edytuj studenta imie nazwisko -->
 <h4 *ngIf="student">Edytuj studenta {{ student.name}}</h4>
 
+<!-- Notyfikacje dla użytkownika o sukcesie operacji -->
+<div *ngIf="isStudentUpdated == true" class="alert alert-success" role="alert">
+  Dane studenta zostały zaktualizowane
+</div>
+
+<!-- Notyfikacje dla użytkownika o błędzie operacji -->
+<div *ngIf="isUpdatedError == true" class="alert alert-danger" role="alert">
+    Błąd połączenia z serwerem
+</div>
+
 <!-- Formularz do edycji -->
-<form *ngIf="student">
+<form *ngIf="student" (ngSubmit)="update()">
   <div class="mb-3">
     <label class="form-label">Imię i nazwisko</label>
     <input [(ngModel)]="student.name" name="studentname" class="form-control" required type="text">
@@ -13,5 +23,8 @@
     <input [(ngModel)]="student.email" name="studentemail" type="email" required class="form-control">
   </div>
 
-  <button type="submit" class="btn btn-secondary">Zapisz</button>
+  <button [disabled]="isSubmiting == true" type="submit" class="btn btn-secondary">
+    <span *ngIf="isSubmiting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Zapisz
+  </button>
 </form>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
 import { Student } from '../models/student';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-list',
@@ -12,7 +13,7 @@ export class StudentListComponent implements OnInit {
   isStudentRemoved: boolean = false;
   removedStudentName = "";
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private router: Router) {
     console.log("Wywołanie konstruktora");
   }
 
@@ -39,5 +40,9 @@ export class StudentListComponent implements OnInit {
         this.isStudentRemoved = true;
         this.removedStudentName = student.name;
       });
+  }
+
+  goToDetails(id : number){
+    this.router.navigate(["/detail-student/"+ id]);
   }
 }

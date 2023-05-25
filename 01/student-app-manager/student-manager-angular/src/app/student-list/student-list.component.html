@@ -24,7 +24,7 @@
       <td>
         <a [routerLink]="'/edit-student/'+student.id" class="btn btn-outline-warning button-margin">Edytuj</a>
         <button (click)="delete(student)" class="btn btn-outline-danger button-margin">Usuń</button>
-        <button class="btn btn-outline-info">Szczegóły</button>
+        <button (click)="goToDetails(student.id)" class="btn btn-outline-info">Szczegóły</button>
       </td>
     </tr>
   </tbody>

@@ -1,0 +1,7 @@
+<app-header-details-student></app-header-details-student>
+<app-content-details-student 
+*ngIf="student"
+[name]="student.name" [email]="student.email"
+[phone]="student.phone" [website]="student.website"
+[username]="student.username"></app-content-details-student>
+<app-buttons-details-student></app-buttons-details-student>

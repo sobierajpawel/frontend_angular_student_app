@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from '../models/student';
+import { catchError, delay, retry, throwError } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-student',
@@ -9,14 +11,16 @@ import { Student } from '../models/student';
   styleUrls: ['./edit-student.component.css']
 })
 export class EditStudentComponent implements OnInit{
-  // 1) Napisanie żądania typu PUT na serwer -> aktualizuj dane
-  // 2) Obsługa przycisku zapisz na tym formularzu
   // 3) Informacja dla użytkowników o tym co się dzieje -> zapis/sukces.
   // ts->html->ts
   student! : Student;
+  isStudentUpdated : boolean = false;
+  isSubmiting = false;
+  isUpdatedError = false;
 
   constructor(private studentService : StudentService,
-    private activedRoute : ActivatedRoute){
+    private activedRoute : ActivatedRoute, private location: Location,
+    private router : Router){
 
   }
 
@@ -33,5 +37,29 @@ export class EditStudentComponent implements OnInit{
       });
 
     console.log("Wywołanie");
+  }
+
+  update() : void{
+    this.isSubmiting = true;
+
+    this.studentService.updateStudent(this.student)
+      .pipe(delay(2000))
+      .pipe(retry(3))
+      .pipe(catchError(error=>{
+        console.log("Wystąpił błąd na serwerze");
+        this.isUpdatedError = true;
+        this.isSubmiting = false;
+
+        return throwError(()=> error);
+      }))
+      .subscribe(()=>{
+        console.log("Zaktualizowano dane studenta");
+        this.isStudentUpdated = true;
+        this.isSubmiting = false;
+        // this.student.name = "";
+        // this.student.email = "";
+        // this.location.back();
+        // this.router.navigate(["/students"]);
+      });
   }
 }

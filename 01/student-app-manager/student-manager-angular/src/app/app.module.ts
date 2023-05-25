@@ -10,6 +10,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { CustomPipe } from './custom.pipe';
 import { EditStudentComponent } from './edit-student/edit-student.component';
+import { DetailsStudentComponent } from './details-student/details-student.component';
+import { HeaderDetailsStudentComponent } from './header-details-student/header-details-student.component';
+import { ContentDetailsStudentComponent } from './content-details-student/content-details-student.component';
+import { ButtonsDetailsStudentComponent } from './buttons-details-student/buttons-details-student.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { EditStudentComponent } from './edit-student/edit-student.component';
     NavigationComponent,
     FooterComponent,
     CustomPipe,
-    EditStudentComponent
+    EditStudentComponent,
+    DetailsStudentComponent,
+    HeaderDetailsStudentComponent,
+    ContentDetailsStudentComponent,
+    ButtonsDetailsStudentComponent
   ],
   imports: [
     BrowserModule,
