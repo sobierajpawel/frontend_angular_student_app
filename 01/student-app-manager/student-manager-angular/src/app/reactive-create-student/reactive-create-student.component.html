@@ -1,0 +1,45 @@
+<!-- Nagłówek -->
+<h4>Dodaj studenta - reaktywnie</h4>
+
+<div *ngIf="isSuccess" class="alert alert-success" role="alert">
+    <p>Dodano studenta</p>
+  </div>
+
+<!-- Formularz -->
+<form [formGroup]="addStudentForm" (ngSubmit)="addStudent()">
+    <!-- Imię i nazwisko -->
+    <label class="form-label">Imię i nazwisko</label>
+    <input formControlName="name" class="form-control" type="text" placeholder="Wprowadź imię oraz nazwisko">
+    <div class="validation-text" *ngIf="controls.name.errors?.['required']">
+        Pole musi być wypełnione!
+    </div>
+    <div class="validation-text" *ngIf="controls.name.errors?.['minlength']">
+        Pole musi zawierać minimalną ilość znaków - 5!
+    </div>
+
+    <!-- Email -->
+    <label class="form-label">Email</label>
+    <input formControlName="email" class="form-control" type="email" placeholder="Wprowadź adres email">
+    <div class="validation-text" *ngIf="controls.email.errors?.['required']">
+        Pole musi być wypełnione!
+    </div>
+    <div class="validation-text" *ngIf="controls.email.errors?.['email']">
+        Pole musi spełniać walidacje email!
+    </div>
+
+    <!-- Numer telefonu -->
+    <label class="form-label">Numer telefonu</label>
+    <input formControlName="phone" class="form-control" type="tel" placeholder="Wprowadź numer telefonu">
+    <div class="validation-text" *ngIf="controls.phone.errors?.['pattern']">
+        Pole musi spełniać walidacje pierwsza liczba między 5-8, następne 8 cyfr od 0-9!
+    </div>
+
+    <!-- Przycisk zapisz -->
+    <button style="margin-top:20px" 
+    [disabled]="addStudentForm.invalid"
+    class="btn btn-success" type="submit">Zapisz</button>
+</form>
+
+<div class="validation-text" *ngIf="addStudentForm.invalid">
+    Walidacja formularza nie jest spełniona!
+</div>

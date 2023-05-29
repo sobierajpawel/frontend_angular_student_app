@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { delay } from 'rxjs';
 import { Student } from '../models/student';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-details-student',
@@ -11,11 +12,12 @@ import { Student } from '../models/student';
 })
 export class DetailsStudentComponent implements OnInit {
   student! : Student;
-  // 1) Pobrać dane studenta o id -> dodamy sobie dwie właściwości
-  // 2) Zbudujemy html -> we wszystkich komponentach
-  // 3) Powiążemy rodzic->dziecko i dziecko->rodzic
+  id : number = 0;
+  // 3) Logike do obsługi  dziecko->rodzic
   // 4) Logike do przycisków w tym komponencie - rodzic
-  constructor(private studentService : StudentService, private activedRoute : ActivatedRoute){
+  constructor(private studentService : StudentService, 
+    private activedRoute : ActivatedRoute, private location : Location,
+    private router : Router){
 
   }
 
@@ -23,9 +25,19 @@ export class DetailsStudentComponent implements OnInit {
     this.activedRoute.params.subscribe(param=>{
       this.studentService.getStudent(Number(param["id"]))
         .subscribe(data=>{
-         this.student = data;
+         this.student = data;  
         });
-
+        this.id = Number(param["id"]);
     });
+  }
+
+  getBack(){
+    console.log("Metoda back - powrót do poprzedniej strony");
+    this.location.back();
+  }
+
+  edit(){
+    console.log("Metoda edit - uruchamiam edycje studenta");
+    this.router.navigate(["/edit-student/"+this.id]);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-buttons-details-student',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./buttons-details-student.component.css']
 })
 export class ButtonsDetailsStudentComponent {
+  @Output() onBackClicked = new EventEmitter();
+  @Output() onEditClicked = new EventEmitter();
 
+  backClick(){
+    this.onBackClicked.emit();
+  }
+
+  editClick(){
+    this.onEditClicked.emit();
+  }
 }

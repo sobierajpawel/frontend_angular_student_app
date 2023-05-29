@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CreateStudentComponent } from './create-student/create-student.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { CustomPipe } from './custom.pipe';
@@ -14,6 +14,7 @@ import { DetailsStudentComponent } from './details-student/details-student.compo
 import { HeaderDetailsStudentComponent } from './header-details-student/header-details-student.component';
 import { ContentDetailsStudentComponent } from './content-details-student/content-details-student.component';
 import { ButtonsDetailsStudentComponent } from './buttons-details-student/buttons-details-student.component';
+import { ReactiveCreateStudentComponent } from './reactive-create-student/reactive-create-student.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,15 @@ import { ButtonsDetailsStudentComponent } from './buttons-details-student/button
     DetailsStudentComponent,
     HeaderDetailsStudentComponent,
     ContentDetailsStudentComponent,
-    ButtonsDetailsStudentComponent
+    ButtonsDetailsStudentComponent,
+    ReactiveCreateStudentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

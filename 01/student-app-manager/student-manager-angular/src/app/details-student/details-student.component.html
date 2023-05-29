@@ -4,4 +4,6 @@
 [name]="student.name" [email]="student.email"
 [phone]="student.phone" [website]="student.website"
 [username]="student.username"></app-content-details-student>
-<app-buttons-details-student></app-buttons-details-student>
+<app-buttons-details-student (onBackClicked)="getBack()"
+(onEditClicked)="edit()"
+></app-buttons-details-student>
